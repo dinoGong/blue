@@ -19,7 +19,7 @@ class NotifyDelegate(DefaultDelegate):
         if(len(val)==32):
             type=val[0:2]
             value=val[26:28]
-            print "value:%s" % value
+            print ("value:%s" % value)
             #hex 2 10
             value=float(int(value,16))
             if(type=="41"): #glu
@@ -28,14 +28,12 @@ class NotifyDelegate(DefaultDelegate):
                  value=value/16.81*0.1
             if(type=="61"): #chol
                  value=value/38.66
-            print "type: %s\n value: %.2f mmol/L" % (type,value)
+            print ("type: %s\n value: %.2f mmol/L" % (type,value))
         else:
-            print "err"
+            print ("err")
 
 dev=btle.Peripheral("00:15:83:00:47:B4").withDelegate(NotifyDelegate())
-
 time.sleep(0.5)
-
 for ser in dev.getServices():
     print(str(ser))
     for chara in ser.getCharacteristics():
@@ -53,9 +51,9 @@ try:
         #if(i>1000):
         #    break
         #continue
-          print "ok"
+          print ("ok")
       else:
-          print "Waiting...";
+          print ("Waiting...")
       time.sleep(0.5)
 finally:
     dev.disconnect()
